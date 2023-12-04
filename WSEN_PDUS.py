@@ -1,5 +1,5 @@
 import smbus
-
+import time
 
 class WSEN_PDUS:
     """WSEN_PDUS class. This class sets up an interface via i2c between a Raspberry Pi and a Wurth Elektronik WSEN PDUS differential pressure and temperature sensor. At the time of writing, this only works for board number 2513254510291 with sensor number 2513130810201.
@@ -31,6 +31,7 @@ class WSEN_PDUS:
         if i2c_channel != 1:
             i2c_channel = 1
         self.i2c = smbus.SMBus(i2c_channel)
+        time.sleep(0.5)
 
     def read_data(self):
         """Reads 4 bytes of data from the WSEN PDUS board. The first two bytes are differential pressure, the second two bytes are temperature.
@@ -44,7 +45,7 @@ class WSEN_PDUS:
         """
         if self.i2c is None:
             raise ValueError("i2c not initialized")
-        return i2c.read_i2c_block_data(self.i2c_address, 0, 4)
+        return self.i2c.read_i2c_block_data(self.i2c_address, 0, 4)
 
     def convert_pressure_data(self, data):
         """Converts raw differential pressure data to kPa

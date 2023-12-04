@@ -1,6 +1,6 @@
 import board
 import adafruit_max31865
-import WSEN_PDUS.WSEN_PDUS as dP_T_sensor
+import WSEN_PDUS
 
 
 def setup_pt100s(nPT100s, pins=None):
@@ -86,4 +86,4 @@ def setup_pressure_and_temperature_sensors(nSensors=1, i2c_channels=NotImplement
     if nSensors != 1:
         nSensors = 1
 
-    return [dP_T_sensor() for _ in range(nSensors)]
+    return [WSEN_PDUS.WSEN_PDUS() for _ in range(nSensors)]
