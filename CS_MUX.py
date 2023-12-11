@@ -44,3 +44,6 @@ class CS_MUX:
             self.deselect()
         else:
             raise ValueError("Pin can only be high or low. Function accepts integers of 0 and 1 or booleans")
+    
+    def __del__(self):
+        GPIO.cleanup()
