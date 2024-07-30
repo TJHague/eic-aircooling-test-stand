@@ -11,7 +11,7 @@ class CS_MUX:
         mux = None
         ch = None
         def __init__(self, 
-                    mux: CS_MUX,
+                    mux,
                     ch: int):
             self.mux = mux
             self.ch = ch
