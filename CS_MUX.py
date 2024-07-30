@@ -27,7 +27,7 @@ class CS_MUX:
             self.mux.toggle(self.ch, value)
 
     def __init__(self, pins: list[int], cs_pin: int):
-        GPIO.setmode(GPIO.BOARD)
+        # GPIO.setmode(GPIO.BOARD)
 
         # Set the output pin
         # In this implementation, it is the chip select that will be passed to the breakout boards

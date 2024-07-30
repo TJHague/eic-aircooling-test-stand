@@ -2,7 +2,7 @@ import board
 from CS_MUX import CS_MUX
 import RPi.GPIO as GPIO  
 
-GPIO.setmode(GPIO.BOARD)
+# GPIO.setmode(GPIO.BOARD)
 
 mux_pins_default = [17, 27, 22, 23]
 mux_cs_default = 24
