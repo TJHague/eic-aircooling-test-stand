@@ -16,9 +16,6 @@ class WSEN_PDUS:
     pressure_min = 3277
     temperature_min = 8192
 
-    # This is a note for me, not used, delete after finished writing class
-    pdus_type = 2
-
     def __init__(self, i2c_channel=1):
         """Initializes a Raspberry PI to WSEN_PDUS connection. Currently only implemented for hardware i2c
         TODO: Implement software i2c

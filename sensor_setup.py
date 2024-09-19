@@ -30,9 +30,6 @@ class air_cooling_test_stand:
     def setup_MUX(pins: list[int] = mux_pins_default, cs: int = mux_cs_default) -> CS_MUX:
         return CS_MUX(pins = pins, cs_pin = cs)
 
-    # With MUX, it seems that we likely don't need the number of SPI devices passed, just the MUX channels for them
-    # Leaving the lines here for now in case I realize I was mistaken, but will probably delete later
-    # def setup_thermocouples(nThermocouples: int, MUX: CS_MUX, MUX_IDs: list[int]) -> list[adafruit_max31855.MAX31855]:
     def setup_thermocouples(MUX: CS_MUX, MUX_IDs: list[int]) -> list[adafruit_max31855.MAX31855]:
         spi = board.SPI()
         return [
@@ -40,7 +37,6 @@ class air_cooling_test_stand:
             for pin in MUX_IDs
         ]
 
-    # def setup_pt100s(nPT100s: int, MUX: CS_MUX, MUX_IDs: list[int]) -> list[adafruit_max31865.MAX31865]:
     def setup_pt100s(MUX: CS_MUX, MUX_IDs: list[int]) -> list[adafruit_max31865.MAX31865]:
         """Sets up PT100s for reading in main program. If only nPT100s is used, it defaults to using predefined GPIO pins. Can also be passed an list of GPIO pins to be used.
 
@@ -57,17 +53,6 @@ class air_cooling_test_stand:
             list[adafruit_max31865.MAX31865]: A list of set up interfaces that can be used to read each PT100.
         """
 
-        # if type(nPT100s) is not int:
-        #     raise TypeError("nPT100s must be an integer")
-        # if nPT100s < 0:
-        #     raise ValueError("Cannot have negative number of PT100s")
-        # if nPT100s > len(MUX_IDs) + 1:
-        #     raise ValueError(
-        #         "Too many PT100s - {} is the maximum when relying on default pin configuration".format(
-        #             len(MUX_IDs) + 1
-        #         )
-        #     )
-
         spi = board.SPI()
         return [
             adafruit_max31865.MAX31865(
@@ -81,36 +66,6 @@ class air_cooling_test_stand:
             )
             for pin in MUX_IDs
         ]
-
-        # # GPIO pins available for use
-        # # Not fully populated, just starting with a few for testing
-        # # Sensors should be connected in the order of this array
-        # cs_pins = [
-        #     board.D5,
-        #     board.D6,
-        #     board.D13,
-        #     board.D19,
-        #     board.D26,
-        #     board.D12,
-        #     board.D16,
-        #     board.D20,
-        # ]
-
-
-
-        # return [
-        #     adafruit_max31865.MAX31865(
-        #         spi,
-        #         cs_pins[i],
-        #         rtd_nominal=100,
-        #         ref_resistor=400,
-        #         wires=2,
-        #         filter_frequency=60,
-        #         polarity=0,
-        #     )
-        #     for i in range(nPT100s)
-        # ]
-
 
     def setup_pressure_and_temperature_sensors(nSensors=1, i2c_channels=NotImplemented) -> list[WSEN_PDUS.WSEN_PDUS]:
         """Sets up differential pressure and temperature sensors. Currently only allows for a single sensor.
