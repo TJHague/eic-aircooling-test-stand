@@ -4,6 +4,7 @@ import time
 class WSEN_PDUS:
     """WSEN_PDUS class. This class sets up an interface via i2c between a Raspberry Pi and a Wurth Elektronik WSEN PDUS differential pressure and temperature sensor. At the time of writing, this only works for board number 2513254510291 with sensor number 2513130810201.
     Currently it uses hardware i2c only, restricting it to only a single sensor due to all sensors having identical i2c addresses.
+    This code is, more or less, a direct translation of the code provided by the manufacturer into python.
 
     TODO: Implement software i2c
 
