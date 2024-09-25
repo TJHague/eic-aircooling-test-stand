@@ -4,6 +4,8 @@ import RPi.GPIO as GPIO
 
 # GPIO.setmode(GPIO.BOARD)
 
+# This code is for testing the pins that connect the Raspberry Pi to the MUX. It does not actually test the multiplexer itself, just the driver code.
+
 mux_pins_default = [17, 27, 22, 23]
 mux_cs_default = 24
 
